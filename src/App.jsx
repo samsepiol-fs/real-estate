@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Signup from './components/Signup'
-import Signin from './components/Signin'
-import About from './components/About'
-import Profile from './components/Profile'
-import Home from './components/Home'
+import Signup from './pages/Signup'
+import Signin from './pages/Signin'
+import About from './pages/About'
+import Profile from './pages/Profile'
+import Home from './pages/Home'
 
 export default function App() {
   return (
