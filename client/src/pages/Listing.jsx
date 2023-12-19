@@ -17,8 +17,6 @@ export default function Listing() {
     const [copied, setCopied] = useState(false);
     const {currentUser} = useSelector((state) => state.user);
     const [contact, setContact] = useState(false);
-    console.log(currentUser._id);
-    console.log(listing?.userRef);
     useEffect(() => {
         const fetchListing = async () => {
             try {
