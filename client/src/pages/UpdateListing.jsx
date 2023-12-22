@@ -38,7 +38,7 @@ export default function UpdateListing() {
         setFormData(data);
     }
     fetchListing();
-   }, [])
+   }, [params.listingId]);
     const handleImageSubmit = (e) => {
         if(files.length > 0 && files.length + formData.imageUrls.length < 7) {
             setUploading(true);
