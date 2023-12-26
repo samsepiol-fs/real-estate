@@ -55,7 +55,7 @@ export default function Header() {
                     </li>
                 </Link>
                 <Link to='/about'>
-                    <li className='hidden sm:inline hover:underline' >
+                    <li className='hidden hover:underline' >
                         <div className="flex flex-col items-center">
                             <FaQuestion className='rounded-full h-6 w-6 object-cover'/>
                             <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> about </span>
