@@ -1,4 +1,4 @@
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaHome, FaQuestion, FaSignInAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -45,20 +45,37 @@ export default function Header() {
                     <FaSearch  className='text-slate-600' />
                 </button>
             </form>
-            <ul className='flex gap-4 items-center'>
+            <ul className='flex gap-6 items-center text-slate-500'>
                 <Link to='/'>
-                    <li className='hidden sm:inline text-slate-700 hover:underline' >Home</li>
+                    <li className='hidden sm:inline hover:underline' >
+                        <div className=' flex flex-col items-center'>
+                            <FaHome className='rounded-full h-6 w-6 object-cover'/>
+                            <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> home </span>
+                        </div>
+                    </li>
                 </Link>
                 <Link to='/about'>
-                    <li className='hidden sm:inline text-slate-700 hover:underline' >About</li>
+                    <li className='hidden sm:inline hover:underline' >
+                        <div className="flex flex-col items-center">
+                            <FaQuestion className='rounded-full h-6 w-6 object-cover'/>
+                            <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> about </span>
+                        </div>
+                    </li>
                 </Link>
                 <Link to='/profile'>
                     {currentUser ? 
-                    (<div className=' flex flex-col items-center'>
-                        <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt="profile" />
-                        <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> you </span>
-                    </div>)
-                    :(<li className=' text-slate-700 hover:underline' >Sign in</li> )}
+                    (<li>
+                        <div className=' flex flex-col items-center'>
+                            <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt="profile" />
+                            <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> you </span>
+                        </div>
+                    </li>)
+                    :(<li className='hidden sm:inline hover:underline' >
+                        <div className="flex flex-col items-center">
+                            <FaSignInAlt className='rounded-full h-6 w-6 object-cover'/>
+                            <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> Sign In </span>
+                        </div>
+                    </li>)}
                 </Link>
             </ul>
         </div>
