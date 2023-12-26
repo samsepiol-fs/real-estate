@@ -54,7 +54,10 @@ export default function Header() {
                 </Link>
                 <Link to='/profile'>
                     {currentUser ? 
-                    (<img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt="profile" /> )
+                    (<div className=' flex flex-col items-center'>
+                        <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt="profile" />
+                        <span className='mt-1 text-slate-700'> you </span>
+                    </div>)
                     :(<li className=' text-slate-700 hover:underline' >Sign in</li> )}
                 </Link>
             </ul>
