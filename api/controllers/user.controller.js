@@ -34,13 +34,30 @@ export const updateUser = async (req, res, next) => {
 export const deleteUser = async (req, res, next) => {
     if(req.user.id !== req.params.id) return next(errorHandler(401, 'You can only delete your own account!'));
     try {
+        const user = await User.findById(req.params.id).populate('listings');
+        console.log('User:', user);
+        console.log('Listings:', user.listings);
+        if(user.listings && user.listings.length > 0) {
+            console.log('Listings found: ', user.listings);
+            try {
+                await Promise.all(user.listings.map(async (listing) => {
+                    console.log('Deleting Listing: ', listing._id);
+                    await Listing.findByIdAndDelete(listing._id);
+                }));
+            } catch (listingError) {
+                console.error('Error deleting listings:', listingError);
+                throw listingError; // Rethrow the error
+            }
+        }
         await User.findByIdAndDelete(req.params.id);
         res.clearCookie('access_token');
         res.status(200).json({message: 'User has been deleted successfully!'});
     } catch (error) {
+        console.error('Error deleting user:', error);
         next(error);
     }
 };
+
 
 export const getUserLsitings = async (req, res, next) => {
     if(req.user.id === req.params.id) {
