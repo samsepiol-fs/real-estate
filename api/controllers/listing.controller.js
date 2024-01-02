@@ -1,9 +1,29 @@
 import Listing from "../models/listing.model.js";
+import User from "../models/user.model.js";
 import { errorHandler } from "../utils/error.js";
 
 export const createListing = async (req, res, next) => {
     try {
-        const listing = await Listing.create(req.body);
+        const userId = req.user.id;
+
+        // Create a new listing
+        const listing = await Listing.create({
+            ...req.body,
+            userRef: userId,
+        });
+
+        // Update the user's listings array
+        const updateResult = await User.findByIdAndUpdate(
+            userId,
+            { $push: { listings: listing._id } },
+            { new: true }
+        );
+
+        if (!updateResult) {
+            // If the user update fails, handle the error
+            return next(errorHandler(500, 'Failed to update user with listing association.'));
+        }
+
         res.status(200).json(listing);
     } catch (error) {
         next(error);
