@@ -41,6 +41,7 @@ export default function CreateListing() {
                 setUploading(false);
             }).catch((err) => {
                 setImageUploadError('Image upload failed (2mb max per image)');
+                setUploading(false);
             })
         } else {
             setImageUploadError('You can upload 6 images per lsiting');
