@@ -70,7 +70,7 @@ export default function Header() {
                             <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> you </span>
                         </div>
                     </li>)
-                    :(<li className='hidden sm:inline hover:underline' >
+                    :(<li className='hover:underline' >
                         <div className="flex flex-col items-center">
                             <FaSignInAlt className='rounded-full h-6 w-6 object-cover'/>
                             <span className='mt-1 text-slate-700 uppercase hover:underline text-xs font-semibold'> Sign In </span>
